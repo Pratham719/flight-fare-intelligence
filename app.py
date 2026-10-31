@@ -1357,8 +1357,9 @@ def render_predictor(df, model):
     draw(fig, "Predicted fare (₹)", "", height=max(300, 42 * len(compare) + 80))
 
     insight(
-        "The model predicts flight fares with 96.1% variance explained and an average error of just 9%," 
-        " with 72.3% of predictions falling within 11% of actual fares. Since prices were collected on a single day," 
+        "The model predicts flight fares with 95.3% variance explained and an average error of about 11%,"
+        " with 64% of predictions falling within 11% of actual fares and 84.2% within 20%."
+        " Since prices were collected on a single day,"
         " treat predictions as helpful estimates rather than real-time booking prices."
     )
 
