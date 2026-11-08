@@ -37,6 +37,7 @@ THEME = dict(
     bad="#FF9292",
     grid="rgba(232,238,245,0.07)",
     line="rgba(232,238,245,0.40)",
+    amber="#E0B45C",
 )
 
 CLASS_COLORS = {
@@ -69,7 +70,6 @@ STOP_COLORS = {
     "2+ stops": "#E5E7EB",
 }   # scatter colours: green / violet / light grey
 
-
 # ============================ CONSTANTS  ============================ 
 DATA_FILES = ["Cleaned_dataset.csv", "data/Cleaned_dataset.csv"]
 MODEL_FILE = "model/flight_fare_model.joblib"
@@ -90,6 +90,21 @@ DAY_ORDER = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
 STOP_LABELS = {0: "Non-stop", 1: "1 stop", 2: "2+ stops"}
 MIN_ROUTE_FLIGHTS = 30
 
+# Error on flights the model has not seen (new-flight test): average miss in rupees and in %
+ERROR_BY_CLASS = {
+    "Economy": (1814, 18),
+    "Premium Economy": (2822, 17),
+    "Business": (7306, 14),
+}
+
+LINKEDIN_URL = "https://www.linkedin.com/in/pratham-ds"   
+GITHUB_URL = "https://github.com/Pratham719"
+
+LI_ICON = '<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>'
+
+GH_ICON = '<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .321.216.694.825.576C20.565 21.795 24 17.298 24 12.297c0-6.627-5.373-12-12-12"/></svg>'
+FORK_URL = GITHUB_URL + "/flight-fare-intelligence/fork"
+FORK_ICON = '<svg viewBox="0 0 16 16"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>'
 
 #  ============================ CSS - Colours come from THEME through CSS variables ============================ 
 ROOT = ":root{" + "".join(f"--{name}:{value};" for name, value in THEME.items()) + "}"
@@ -225,6 +240,18 @@ span[data-baseweb="tag"] svg{fill:#E0B45C}
  .reco-title{font-size:.78rem}
  .reco-text{font-size:.7rem;line-height:1.5}
 }
+  /* ===== SIDEBAR: ABOUT ME ===== */
+  .me-card{margin-top:.5rem;padding:13px 14px;border-radius:9px;background:rgba(224,180,92,.10);
+   border:1px solid rgba(224,180,92,.45);border-left:3px solid var(--amber)}
+  .me-name{color:var(--amber);font-weight:800;font-size:.88rem}
+  .me-role{color:var(--muted);font-size:.72rem;margin:2px 0 11px}
+  .me-links{display:flex;flex-wrap:wrap;gap:8px}
+  .me-links a{flex:1 1 40%;display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 0;
+   border-radius:7px;border:1px solid rgba(224,180,92,.45);color:var(--amber)!important;font-size:.78rem;
+   font-weight:700;text-decoration:none!important;transition:background .2s ease,color .2s ease}
+  .me-links a.fork{flex-basis:100%}
+  .me-links a:hover{background:var(--amber);color:#12151A!important}
+  .me-links svg{width:15px;height:15px;fill:currentColor;flex:none}
 
 </style>"""
 
@@ -435,10 +462,30 @@ def render_sidebar(df, model_source):
         & df["Stops"].isin(stop_numbers)
     )
 
+    with st.sidebar.expander("ℹ️ About this data"):
+        st.caption(
+            f"Based on {len(df):,} flight prices recorded on a single day, "
+            f"covering {df['Route'].nunique()} routes and {df['Airline'].nunique()} airlines."
+        )   
+        st.caption("These are listed prices, not tickets actually sold, so averages are not what travellers paid.")
+        st.caption("Business class appears more often here than in real-world travel.")
+        st.caption("Travel time for flights with stops includes waiting time between flights.")
+        st.caption("For flights it has not seen before, the predictor lands within 10% of the listed price about 4 times in 10, "
+                    "and within 20% about 7 times in 10. Treat it as a guide, not a quote.")
+        st.caption(f"Model: {model_source}")
+    
     st.sidebar.divider()
-    st.sidebar.caption(f"Flights in data: {len(df):,} | Airlines: {df['Airline'].nunique()}")
-    st.sidebar.caption(f"Prediction model: {model_source}")
-
+    st.sidebar.markdown(
+        '<div class="me-card">'
+        '<div class="me-name">Built by Pratham</div>'
+        '<div class="me-role">Aspiring Data Scientist · Surat, India</div>'
+        '<div class="me-links">'
+        f'<a href="{LINKEDIN_URL}" target="_blank" rel="noopener">{LI_ICON}LinkedIn</a>'
+        f'<a href="{GITHUB_URL}" target="_blank" rel="noopener">{GH_ICON}GitHub</a>'
+        f'<a class="fork" href="{FORK_URL}" target="_blank" rel="noopener">{FORK_ICON}Fork this project</a>'
+       '</div></div>',
+        unsafe_allow_html=True,
+    )
     # copy only the columns the charts use (copying all 12 columns of 445k rows on every click ran out of memory)
     keep = [
         "Airline", "Class", "Source", "Destination", "Route", "Stops", "Fare", "Days_left",
@@ -512,8 +559,11 @@ def build_recos(_df):
         if len(by_air) > 1:
             q = sub.groupby("Airline")["Fare"].quantile([0.25, 0.5, 0.75]).unstack()
             spread = ((q[0.75] - q[0.25]) / q[0.5]).dropna()
+            dur = sub.groupby("Airline")["Duration_in_hours"].mean()
+            name = by_air.index[0]
             a.append(("💰", "Cheapest airline",
-                f"{by_air.index[0]} has the lowest {cls} average (₹{by_air.iloc[0]:,.0f}).", "green"))
+                f"{name} has the lowest {cls} average (₹{by_air.iloc[0]:,.0f}), but its trips average "
+                f"{dur[name]:.1f}h vs {sub['Duration_in_hours'].mean():.1f}h overall, so route mix plays a part.", "green"))
         else:
             a.append(("💰", "Limited choice",
                 f"Only {by_air.index[0]} sells {cls} (avg ₹{by_air.iloc[0]:,.0f}), so compare routes and timing instead.", "green"))
@@ -781,6 +831,7 @@ def render_airlines(f, f_all_classes, sel_class, airline_colors,recos):
 
     # ---- numbers used by the KPIs and charts -------------------------------
     by_airline = f.groupby("Airline")["Fare"].agg(["mean", "size"]).sort_values("mean")
+    dur_by_airline = f.groupby("Airline")["Duration_in_hours"].mean()
     price_gap = (by_airline["mean"].iloc[-1] / by_airline["mean"].iloc[0] - 1) * 100
 
     routes = f.groupby("Route")["Fare"].agg(["mean", "size"]).reset_index()
@@ -809,8 +860,10 @@ def render_airlines(f, f_all_classes, sel_class, airline_colors,recos):
             ))
 
     kpi_row([
-        ("Costliest airline", by_airline.index[-1], f"Avg fare ₹{by_airline['mean'].iloc[-1]:,.0f}", "red"),
-        ("Airline price gap", f"{price_gap:.0f}%", "Costliest vs cheapest airline", "amber"),
+        ("Costliest airline", by_airline.index[-1],
+            f"Avg ₹{by_airline['mean'].iloc[-1]:,.0f} · avg trip {dur_by_airline[by_airline.index[-1]]:.1f}h", "red"),
+        ("Airline price gap", f"{price_gap:.0f}%",
+            "Mixes classes, pick one for a fair gap" if len(sel_class) > 1 else "Costliest vs cheapest airline", "amber"),
         *route_cards,
     ])
 
@@ -921,49 +974,35 @@ def render_airlines(f, f_all_classes, sel_class, airline_colors,recos):
         st.info(f"No route has {MIN_ROUTE_FLIGHTS} or more flights under the current filters.")
 
     else:
-        if show == "Costliest":
-            top = routes.nlargest(10, "Average fare")
-        elif show == "Cheapest":
-            top = routes.nsmallest(10, "Average fare")
+        if show == "Busiest":
+            top = routes.nlargest(10, "Flights").sort_values("Flights")
+            metric, x_title = "Flights", "Number of flights"
+            top["Label"] = [f"{n:,} flights<br>₹{fare:,.0f} avg"
+                            for fare, n in zip(top["Average fare"], top["Flights"])]
         else:
-            top = routes.nlargest(10, "Flights")
-
-        top = top.sort_values("Average fare").copy()
-        top["Label"] = [
-            f"₹{fare:,.0f}<br>{n:,} flights"
-            for fare, n in zip(top["Average fare"], top["Flights"])
-        ]
+            top = (routes.nlargest(10, "Average fare") if show == "Costliest"
+                else routes.nsmallest(10, "Average fare")).sort_values("Average fare")
+            metric, x_title = "Average fare", "Average fare (₹)"
+            top["Label"] = [f"₹{fare:,.0f}<br>{n:,} flights"
+                    for fare, n in zip(top["Average fare"], top["Flights"])]
 
         fig = px.bar(
-            top,
-            x="Average fare",
-            y="Short",
-            orientation="h",
-            color="Average fare",
-            color_continuous_scale=COST_SCALE,
-            text="Label",
-            custom_data=["Flights", "Route"],
+            top, x=metric, y="Short", orientation="h",
+            color=metric, color_continuous_scale=COST_SCALE,
+            text="Label", custom_data=["Flights", "Route", "Average fare"],
         )
         fig.update_traces(
-            textposition="outside",
-            cliponaxis=False,
-            textfont_size=11,
-            hovertemplate="<b>%{customdata[1]}</b><br>Average fare: ₹%{x:,.0f}<br>Flights: %{customdata[0]:,}<extra></extra>",
+            textposition="outside", cliponaxis=False, textfont_size=11,
+            hovertemplate="<b>%{customdata[1]}</b><br>Average fare: ₹%{customdata[2]:,.0f}<br>Flights: %{customdata[0]:,}<extra></extra>",
         )
-        fig.update_xaxes(range=[0, top["Average fare"].max() * 1.5])
+        fig.update_xaxes(range=[0, top[metric].max() * 1.5])
         fig.update_layout(coloraxis_showscale=False)
 
         if show == "Cheapest":
             fig.update_yaxes(autorange="reversed")
 
-        draw(
-            fig,
-            "Average fare (₹)",
-            "",
-            legend=False,
-            height=max(350, 45 * len(top) + 80),
-            margin=dict(l=4, r=30),
-        )
+        draw(fig, x_title, "", legend=False,
+            height=max(350, 45 * len(top) + 80), margin=dict(l=4, r=30))
 
     # ---- Chart 8: class mix by airline -------------------------------------
     st.markdown("#### Class mix by airline")
@@ -1164,6 +1203,7 @@ def render_timing(f, sel_class,recos):
         (
             f"Fare of flights with 1+ stops vs non-stop: {', '.join(parts)}. Connecting flights also take far longer, "
             "about 13 to 17 hours on average versus about 2 hours non-stop."
+            " These durations include layover time."
         ) if parts else None
     )
 
@@ -1235,7 +1275,7 @@ def render_predictor(df, model):
         value=float(round(typical_hours, 2)),
         step=0.25,
         key=f"p_dur_{airline}|{cls}|{src}|{dst}|{stops}",
-        help="Pre-filled with the typical duration for this choice.",
+        help="Total trip time including layovers. Pre-filled with the typical value for this choice.",
     )
 
     seen_in_data = (
@@ -1305,10 +1345,16 @@ def render_predictor(df, model):
     kpi_row([
         ("Predicted fare", f"₹{predicted:,.0f}", "Estimate for the trip above", "blue"),
         ("Route median", median_text, f"Median {cls} fare on this route", "green"),
-        ("Typical range", range_text, "Middle 50% of fares on this route", "amber"),
+        ("Middle 50% of fares", range_text, "Past fares on this route", "amber"),
         ("vs route median", diff_text, "Your predicted fare compared with the median", "red"),
     ])
-
+    
+    err = ERROR_BY_CLASS.get(cls)
+    if err:
+        st.caption(f"Typical miss for {cls} on flights the model has not seen: about ₹{err[0]:,.0f} (around {err[1]}%).")
+    else:
+        st.warning("First class has only 144 records from 4 flights, and the model tends to price it about a third too low. Treat this estimate as a very rough guide.")
+        
     # ---- chart: predicted fare vs days left ------------------------------------
     st.markdown("#### Predicted fare vs days left")
 
@@ -1341,7 +1387,7 @@ def render_predictor(df, model):
             "Choice": "Your choice" if name == airline else "Other airlines",
         })
 
-    compare = pd.DataFrame(rows).sort_values("Predicted fare")
+    compare = pd.DataFrame(rows).sort_values("Predicted fare", ascending=False)
 
     fig = px.bar(
         compare,
@@ -1351,16 +1397,17 @@ def render_predictor(df, model):
         color="Choice",
         text_auto=",.0f",
         color_discrete_map={"Your choice": PAL[6], "Other airlines": PAL[2]},
+        category_orders={"Airline":compare["Airline"].tolist()}
     )
     fig.update_traces(textposition="outside", cliponaxis=False)
     fig.update_xaxes(range=[0, compare["Predicted fare"].max() * 1.15])
     draw(fig, "Predicted fare (₹)", "", height=max(300, 42 * len(compare) + 80))
 
     insight(
-        "The model predicts flight fares with 95.3% variance explained and an average error of about 11%,"
-        " with 64% of predictions falling within 11% of actual fares and 84.2% within 20%."
-        " Since prices were collected on a single day,"
-        " treat predictions as helpful estimates rather than real-time booking prices."
+        "On flights the model has not seen before, about 44% of predictions land within 10% of the listed fare "
+        "and about 70% within 20% (R² 0.91, average error about ₹3,500). Testing on random rows gives higher scores "
+        "(60% within 10%) because the same flights also appear in training, so treat this as a guide, not a quote. "
+        "Prices were collected on a single day."
     )
 
 
@@ -1384,17 +1431,16 @@ def main():
     if has_data:
         airline_avg = f.groupby("Airline")["Fare"].mean()
         prem = premium(f)
+        dur_avg = f.groupby("Airline")["Duration_in_hours"].mean()
 
         kpi_row(
             [
                 ("Average fare", f"₹{f['Fare'].mean():,.0f}", f"Median ₹{f['Fare'].median():,.0f}", "blue"),
                 ("Total flights", f"{len(f):,}", f"{f['Airline'].nunique()} airlines · {f['Route'].nunique()} routes", "green"),
-                ("Cheapest airline", airline_avg.idxmin(), f"Avg fare ₹{airline_avg.min():,.0f}", "amber"),
-                (
-                    "Last-minute premium",
-                    f"{prem * 100:+.0f}%" if prem is not None else "n/a",
-                    "<b>Within 3 days</b> vs 22+ days ahead",
-                    "red",
+                ("Cheapest airline", airline_avg.idxmin(),
+                    f"Avg ₹{airline_avg.min():,.0f} · avg trip {dur_avg[airline_avg.idxmin()]:.1f}h", "amber"),                
+                ("Last-minute premium",f"{prem * 100:+.0f}%" if prem is not None else "n/a",
+                    "<b>Within 3 days</b> vs 22+ days ahead","red",
                 ),
             ],
             hero=True,

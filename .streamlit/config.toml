@@ -9,3 +9,6 @@ baseRadius = "8px"
 
 [theme.sidebar]
 primaryColor = "#E0B45C"
+
+[client]
+toolbarMode = "viewer"
